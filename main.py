@@ -32,39 +32,39 @@ mh = Adafruit_MotorHAT(addr=0x60)
     self.rightm.setSpeed(150)
 
     while (True):
-        print "Forward! "
+        print("Forward! ")
         self.leftm.run(Adafruit_MotorHAT.FORWARD)
         self.rightm.run(Adafruit_MotorHAT.FORWARD)
 
-        print "\tSpeed up..."
+        print("\tSpeed up...")
         for i in range(255):
             self.leftm.setSpeed(i)
             self.rightm.setspeed(i)
             time.sleep(0.01)
 
-        print "\tSlow down..."
+        print("\tSlow down...")
         for i in reversed(range(255)):
             self.leftm.setSpeed(i)
             self.rightm.setspeed(i)
             time.sleep(0.01)
 
-        print "Backward! "
+        print("Backward! ")
         self.leftm.run(Adafruit_MotorHAT.BACKWARD)
         self.rightm.run(Adafruit_MotorHAT.BACKWARD)
 
-        print "\tSpeed up..."
+        print("\tSpeed up...")
             for i in range(255):
             self.leftm.setSpeed(i)
             self.rightm.setspeed(i)
             time.sleep(0.01)
 
-        print "\tSlow down..."
+        print("\tSlow down...")
             for i in reversed(range(255)):
             self.leftm.setSpeed(i)
             self.rightm.setspeed(i)
             time.sleep(0.01)
 
-        print "Release"
+        print("Release")
             self.leftm.run(Adafruit_MotorHAT.RELEASE)
             self.rightm.run(Adafruit_MotorHAT.RELEASE)
             time.sleep(1.0)
@@ -146,7 +146,7 @@ mh = Adafruit_MotorHAT(addr=0x60)
             GPIO.cleanup()
         
         else:
-            print "Incorrect usonic() function varible."
+            print("Incorrect usonic() function varible.")
     
     
     def rightSensor(self, sensor):
@@ -225,5 +225,5 @@ mh = Adafruit_MotorHAT(addr=0x60)
             GPIO.cleanup()
         
         else:
-            print "Incorrect usonic() function varible."
+            print("Incorrect usonic() function varible.")
     
