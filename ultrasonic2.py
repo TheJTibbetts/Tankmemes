@@ -4,7 +4,7 @@
 # GPIO output = the pin that's connected to "Trig" on the sensor
 # GPIO input = the pin that's connected to "Echo" on the sensor
 
-def reading(sensor):
+def reading(sensor1):
     import time
     import RPi.GPIO as GPIO
     
