@@ -9,7 +9,8 @@ class robots
     def __init__(self):
         self.leftm
         self.rightm
-    
+        self.sensor
+
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x60)
     
