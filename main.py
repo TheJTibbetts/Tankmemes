@@ -5,13 +5,13 @@ import RPi.GPIO as GPIO
 
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
+# create a default object, no changes to I2C address or frequency
+mh = Adafruit_MotorHAT(addr=0x60)
+
 class robots():
     def __init__(self):
         self.leftm
         self.rightm
-    
-# create a default object, no changes to I2C address or frequency
-mh = Adafruit_MotorHAT(addr=0x60)
     
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
