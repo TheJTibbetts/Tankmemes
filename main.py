@@ -21,53 +21,53 @@ class robots():
         mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
     
     def motors(self):
+        
+        atexit.register(turnOffMotors)
 
-    atexit.register(turnOffMotors)
+        self.leftm = mh.getMotor(1)
+        self.rightm = mh.getMotor(3)
 
-    self.leftm = mh.getMotor(1)
-    self.rightm = mh.getMotor(3)
+        # set the speed to start, from 0 (off) to 255 (max speed)
+        self.leftm.setSpeed(150)
+        self.rightm.setSpeed(150)
 
-    # set the speed to start, from 0 (off) to 255 (max speed)
-    self.leftm.setSpeed(150)
-    self.rightm.setSpeed(150)
-
-    while (True):
-        print("Forward! ")
-        self.leftm.run(Adafruit_MotorHAT.FORWARD)
-        self.rightm.run(Adafruit_MotorHAT.FORWARD)
-
-        print("\tSpeed up...")
-        for i in range(255):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
-
-        print("\tSlow down...")
-        for i in reversed(range(255)):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
-
-        print("Backward! ")
-        self.leftm.run(Adafruit_MotorHAT.BACKWARD)
-        self.rightm.run(Adafruit_MotorHAT.BACKWARD)
-
-        print("\tSpeed up...")
+        while (True):
+            print("Forward! ")
+            self.leftm.run(Adafruit_MotorHAT.FORWARD)
+            self.rightm.run(Adafruit_MotorHAT.FORWARD)
+    
+            print("\tSpeed up...")
             for i in range(255):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
 
-        print("\tSlow down...")
+            print("\tSlow down...")
             for i in reversed(range(255)):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
 
-        print("Release")
-            self.leftm.run(Adafruit_MotorHAT.RELEASE)
-            self.rightm.run(Adafruit_MotorHAT.RELEASE)
-            time.sleep(1.0)
+            print("Backward! ")
+            self.leftm.run(Adafruit_MotorHAT.BACKWARD)
+            self.rightm.run(Adafruit_MotorHAT.BACKWARD)
+
+            print("\tSpeed up...")
+                for i in range(255):
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
+    
+            print("\tSlow down...")
+                for i in reversed(range(255)):
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
+
+            print("Release")
+                self.leftm.run(Adafruit_MotorHAT.RELEASE)
+                self.rightm.run(Adafruit_MotorHAT.RELEASE)
+                time.sleep(1.0)
             
             
     def leftSensor(self, sensor):
