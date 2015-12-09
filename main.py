@@ -53,13 +53,13 @@ class robots():
             self.rightm.run(Adafruit_MotorHAT.BACKWARD)
 
             print("\tSpeed up...")
-                for i in range(255):
+            for i in range(255):
                 self.leftm.setSpeed(i)
                 self.rightm.setspeed(i)
                 time.sleep(0.01)
     
             print("\tSlow down...")
-                for i in reversed(range(255)):
+            for i in reversed(range(255)):
                 self.leftm.setSpeed(i)
                 self.rightm.setspeed(i)
                 time.sleep(0.01)
