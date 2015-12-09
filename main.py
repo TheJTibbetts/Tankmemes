@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
-class robots()
+class robots():
     def __init__(self):
         self.leftm
         self.rightm
