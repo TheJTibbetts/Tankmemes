@@ -65,9 +65,9 @@ class robots():
                 time.sleep(0.01)
 
             print("Release")
-                self.leftm.run(Adafruit_MotorHAT.RELEASE)
-                self.rightm.run(Adafruit_MotorHAT.RELEASE)
-                time.sleep(1.0)
+            self.leftm.run(Adafruit_MotorHAT.RELEASE)
+            self.rightm.run(Adafruit_MotorHAT.RELEASE)
+            time.sleep(1.0)
             
             
     def leftSensor(self, sensor):
