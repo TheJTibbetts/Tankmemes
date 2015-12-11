@@ -3,7 +3,6 @@ import atexit
 import sys
 import RPi.GPIO as GPIO
 
-from Adafruit-Motor-HAT-Python-Library import Adafruit_MotorHAT
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 # create a default object, no changes to I2C address or frequency
