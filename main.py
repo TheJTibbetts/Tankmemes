@@ -5,14 +5,13 @@ import RPi.GPIO as GPIO
 
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
-class robots
+# create a default object, no changes to I2C address or frequency
+mh = Adafruit_MotorHAT(addr=0x60)
+
+class robots():
     def __init__(self):
         self.leftm
         self.rightm
-        self.sensor
-
-# create a default object, no changes to I2C address or frequency
-mh = Adafruit_MotorHAT(addr=0x60)
     
     # recommended for auto-disabling motors on shutdown!
     def turnOffMotors(self):
@@ -22,50 +21,50 @@ mh = Adafruit_MotorHAT(addr=0x60)
         mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
     
     def motors(self):
+        
+        atexit.register(turnOffMotors)
 
-    atexit.register(turnOffMotors)
+        self.leftm = mh.getMotor(1)
+        self.rightm = mh.getMotor(3)
 
-    self.leftm = mh.getMotor(1)
-    self.rightm = mh.getMotor(3)
+        # set the speed to start, from 0 (off) to 255 (max speed)
+        self.leftm.setSpeed(150)
+        self.rightm.setSpeed(150)
 
-    # set the speed to start, from 0 (off) to 255 (max speed)
-    self.leftm.setSpeed(150)
-    self.rightm.setSpeed(150)
-
-    while (True):
-        print "Forward! "
-        self.leftm.run(Adafruit_MotorHAT.FORWARD)
-        self.rightm.run(Adafruit_MotorHAT.FORWARD)
-
-        print "\tSpeed up..."
-        for i in range(255):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
-
-        print "\tSlow down..."
-        for i in reversed(range(255)):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
-
-        print "Backward! "
-        self.leftm.run(Adafruit_MotorHAT.BACKWARD)
-        self.rightm.run(Adafruit_MotorHAT.BACKWARD)
-
-        print "\tSpeed up..."
+        while (True):
+            print("Forward! ")
+            self.leftm.run(Adafruit_MotorHAT.FORWARD)
+            self.rightm.run(Adafruit_MotorHAT.FORWARD)
+    
+            print("\tSpeed up...")
             for i in range(255):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
 
-        print "\tSlow down..."
+            print("\tSlow down...")
             for i in reversed(range(255)):
-            self.leftm.setSpeed(i)
-            self.rightm.setspeed(i)
-            time.sleep(0.01)
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
 
-        print "Release"
+            print("Backward! ")
+            self.leftm.run(Adafruit_MotorHAT.BACKWARD)
+            self.rightm.run(Adafruit_MotorHAT.BACKWARD)
+
+            print("\tSpeed up...")
+            for i in range(255):
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
+    
+            print("\tSlow down...")
+            for i in reversed(range(255)):
+                self.leftm.setSpeed(i)
+                self.rightm.setspeed(i)
+                time.sleep(0.01)
+
+            print("Release")
             self.leftm.run(Adafruit_MotorHAT.RELEASE)
             self.rightm.run(Adafruit_MotorHAT.RELEASE)
             time.sleep(1.0)
@@ -87,9 +86,9 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # change these values to the pins you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            GPIO.setup(17,GPIO.OUT)
-            GPIO.setup(18,GPIO.IN)
-            GPIO.output(17, GPIO.LOW)
+            GPIO.setup(18,GPIO.OUT)
+            GPIO.setup(17,GPIO.IN)
+            GPIO.output(18, GPIO.LOW)
         
             # found that the sensor can crash if there isn't a delay here
             # no idea why. If you have odd crashing issues, increase delay
@@ -106,7 +105,7 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # start the pulse on the GPIO pin
             # change this value to the pin you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
-            GPIO.output(17, True)
+            GPIO.output(18, True)
         
             # wait 10 micro seconds (this is 0.00001 seconds) so the pulse
             # length is 10Us as the sensor expects
@@ -115,21 +114,21 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # stop the pulse after the time above has passed
             # change this value to the pin you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
-            GPIO.output(17, False)
+            GPIO.output(18, False)
         
             # listen to the input pin. 0 means nothing is happening. Once a
             # signal is received the value will be 1 so the while loop
             # stops and has the last recorded time the signal was 0
             # change this value to the pin you are using
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            while GPIO.input(18) == 0:
+            while GPIO.input(17) == 0:
                 signaloff = time.time()
         
             # listen to the input pin. Once a signal is received, record the
             # time the signal came through
             # change this value to the pin you are using
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            while GPIO.input(18) == 1:
+            while GPIO.input(17) == 1:
                 signalon = time.time()
         
             # work out the difference in the two recorded times above to
@@ -147,7 +146,7 @@ mh = Adafruit_MotorHAT(addr=0x60)
             GPIO.cleanup()
         
         else:
-            print "Incorrect usonic() function varible."
+            print("Incorrect usonic() function varible.")
     
     
     def rightSensor(self, sensor):
@@ -226,5 +225,4 @@ mh = Adafruit_MotorHAT(addr=0x60)
             GPIO.cleanup()
         
         else:
-            print "Incorrect usonic() function varible."
-    
+            print("Incorrect usonic() function varible."
