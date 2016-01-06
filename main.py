@@ -87,9 +87,9 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # change these values to the pins you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            GPIO.setup(10,GPIO.OUT)
-            GPIO.setup(9,GPIO.IN)
-            GPIO.output(10, GPIO.LOW)
+            GPIO.setup(17,GPIO.OUT)
+            GPIO.setup(18,GPIO.IN)
+            GPIO.output(17, GPIO.LOW)
         
             # found that the sensor can crash if there isn't a delay here
             # no idea why. If you have odd crashing issues, increase delay
@@ -106,7 +106,7 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # start the pulse on the GPIO pin
             # change this value to the pin you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
-            GPIO.output(10, True)
+            GPIO.output(17, True)
         
             # wait 10 micro seconds (this is 0.00001 seconds) so the pulse
             # length is 10Us as the sensor expects
@@ -115,21 +115,21 @@ mh = Adafruit_MotorHAT(addr=0x60)
             # stop the pulse after the time above has passed
             # change this value to the pin you are using
             # GPIO output = the pin that's connected to "Trig" on the sensor
-            GPIO.output(10, False)
+            GPIO.output(17, False)
         
             # listen to the input pin. 0 means nothing is happening. Once a
             # signal is received the value will be 1 so the while loop
             # stops and has the last recorded time the signal was 0
             # change this value to the pin you are using
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            while GPIO.input(9) == 0:
+            while GPIO.input(18) == 0:
                 signaloff = time.time()
         
             # listen to the input pin. Once a signal is received, record the
             # time the signal came through
             # change this value to the pin you are using
             # GPIO input = the pin that's connected to "Echo" on the sensor
-            while GPIO.input(9) == 1:
+            while GPIO.input(18) == 1:
                 signalon = time.time()
         
             # work out the difference in the two recorded times above to
