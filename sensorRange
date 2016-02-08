@@ -25,4 +25,8 @@ start = time.time()
 
 while GPIO.input(ECHO) == 1
         pass
-start = time.time()
+stop = time.time()
+
+print (stop - start) * 17000
+
+GPIO.cleanup()
